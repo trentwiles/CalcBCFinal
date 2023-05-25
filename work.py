@@ -4,6 +4,15 @@ from scipy import integrate
 def functionOne(x):
     return math.sin(x)
 
+def functionTwo(x):
+    return math.cos(x)
+
+def functionThree(x):
+    return x^2
+
+def functionFour(x):
+    return math.sqrt(x) + math.tan(2*x)
+
 def integral(function, lower, upper):
     # I have to put it backwards for some reason
     result, error = integrate.quad(function, upper, lower)
