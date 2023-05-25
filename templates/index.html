@@ -9,10 +9,44 @@
 
 <body>
     <script>
-        $(document).ready(function() {
-            $('#items').change(function() {
+        function work(s){
+            
+                $.ajax({
+                    type: 'POST',
+                    url: '/',
+                    data: { "q": s, "t": "integral", "upper": 10, "lower": 0, "blocks": document.getElementById("n_val").value },
+                    success: function (response) {
+                        document.getElementById("integral").innerHTML = response
+                    },
+                    error: function (error) {
+                        console.error('POST request failed.');
+                        console.error('Error:', error);
+                    }
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: '/',
+                    data: { "q": s, "t": "midpoint", "upper": 10, "lower": 0, "blocks": document.getElementById("n_val").value },
+                    success: function (response) {
+                        document.getElementById("midpoint").innerHTML = response
+                    },
+                    error: function (error) {
+                        console.error('POST request failed.');
+                        console.error('Error:', error);
+                    }
+                });
+        }
+
+
+        $(document).ready(function () {
+            
+            document.getElementById("n_val").oninput = function () {
+                document.getElementById("n_count").innerHTML = '"n" value: ' + this.value;
+                work($('#items').val())
+            };
+            $('#items').change(function () {
                 var s = $(this).val();
-                //requests.post()
+                work(s)
             });
         });
     </script>
@@ -24,14 +58,24 @@
         <option value="3">x^2</option>
         <option value="4">x^(1/2) + tan(2x)</option>
     </select>
+    <input type="range" id="n_val" min="1" max="10000" value="2">
+    <p id="n_count">"n" value: 2</p>
     <table class="table">
         <tr>
-            <td>Integral<br><p id="integral"></p></td>
-            <td>Midpoint<br><p id="midpoint"></p></td>
+            <td>Integral<br>
+                <p id="integral"></p>
+            </td>
+            <td>Midpoint<br>
+                <p id="midpoint"></p>
+            </td>
         </tr>
         <tr>
-            <td>Left<br><p id="left"></p></td>
-            <td>Right<br><p id="right"></p></td>
+            <td>Left<br>
+                <p id="left"></p>
+            </td>
+            <td>Right<br>
+                <p id="right"></p>
+            </td>
         </tr>
     </table>
 </body>

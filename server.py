@@ -11,11 +11,11 @@ def hello():
 def post():
     if not request.form.get("q") and not request.form.get("t") and not request.form.get("upper") and not request.form.get("lower"):
         return "error"
-    if request.form.get("q") == "1" or 1:
+    if request.form.get("q") == "1" or request.form.get("q") == 1:
         f = work.functionOne
-    elif request.form.get("q") == "2" or 2:
+    elif request.form.get("q") == "2" or request.form.get("q") == 2:
         f = work.functionTwo
-    elif request.form.get("q") == "3" or 3:
+    elif request.form.get("q") == "3" or request.form.get("q") == 3:
         f = work.functionThree
     else:
         f = work.functionFour

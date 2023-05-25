@@ -8,7 +8,7 @@ def functionTwo(x):
     return math.cos(x)
 
 def functionThree(x):
-    return x^2
+    return x ** 2
 
 def functionFour(x):
     return math.sqrt(x) + math.tan(2*x)
