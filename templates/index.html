@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Approximation Comparison</title>
+    <link href="https://cdn-cloudfront.riverside.rocks/assets/simple.css" rel="stylesheet" />
+    <script src=" https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js "></script>
+</head>
+
+<body>
+    <script>
+        $(document).ready(function() {
+            $('#items').change(function() {
+                var s = $(this).val();
+                //requests.post()
+            });
+        });
+    </script>
+    <h1>Approximation Comparison Tool</h1>
+    <br>
+    <select name="items" id="items">
+        <option value="1">sin(x)</option>
+        <option value="2">cos(x)</option>
+        <option value="3">x^2</option>
+        <option value="4">x^(1/2) + tan(2x)</option>
+    </select>
+    <table class="table">
+        <tr>
+            <td>Integral<br><p id="integral"></p></td>
+            <td>Midpoint<br><p id="midpoint"></p></td>
+        </tr>
+        <tr>
+            <td>Left<br><p id="left"></p></td>
+            <td>Right<br><p id="right"></p></td>
+        </tr>
+    </table>
+</body>
+
+</html>
