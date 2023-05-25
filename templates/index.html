@@ -5,71 +5,98 @@
     <title>Approximation Comparison</title>
     <link href="https://cdn-cloudfront.riverside.rocks/assets/simple.css" rel="stylesheet" />
     <script src=" https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js "></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body>
     <script>
-        function work(s){
-            
-                $.ajax({
-                    type: 'POST',
-                    url: '/',
-                    data: { "q": s, "t": "integral", "upper": 10, "lower": 0, "blocks": document.getElementById("n_val").value },
-                    success: function (response) {
-                        document.getElementById("integral").innerHTML = response
-                    },
-                    error: function (error) {
-                        console.error('POST request failed.');
-                        console.error('Error:', error);
-                    }
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: '/',
-                    data: { "q": s, "t": "midpoint", "upper": 10, "lower": 0, "blocks": document.getElementById("n_val").value },
-                    success: function (response) {
-                        document.getElementById("midpoint").innerHTML = response
-                    },
-                    error: function (error) {
-                        console.error('POST request failed.');
-                        console.error('Error:', error);
-                    }
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: '/',
-                    data: { "q": s, "t": "left", "upper": 10, "lower": 0, "blocks": document.getElementById("n_val").value },
-                    success: function (response) {
-                        document.getElementById("left").innerHTML = response
-                    },
-                    error: function (error) {
-                        console.error('POST request failed.');
-                        console.error('Error:', error);
-                    }
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: '/',
-                    data: { "q": s, "t": "right", "upper": 10, "lower": 0, "blocks": document.getElementById("n_val").value },
-                    success: function (response) {
-                        document.getElementById("right").innerHTML = response
-                    },
-                    error: function (error) {
-                        console.error('POST request failed.');
-                        console.error('Error:', error);
-                    }
-                });
+        function work(s) {
+
+            $.ajax({
+                type: 'POST',
+                url: '/',
+                data: { "q": s, "t": "integral", "upper": document.getElementById("upper").value, "lower": document.getElementById("lower").value, "blocks": document.getElementById("n_val").value },
+                success: function (response) {
+                    document.getElementById("integral").innerHTML = response
+                },
+                error: function (error) {
+                    console.error('POST request failed.');
+                    console.error('Error:', error);
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: '/',
+                data: { "q": s, "t": "midpoint", "upper": document.getElementById("upper").value, "lower": document.getElementById("lower").value, "blocks": document.getElementById("n_val").value },
+                success: function (response) {
+                    document.getElementById("midpoint").innerHTML = response
+                },
+                error: function (error) {
+                    console.error('POST request failed.');
+                    console.error('Error:', error);
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: '/',
+                data: { "q": s, "t": "left", "upper": document.getElementById("upper").value, "lower": document.getElementById("lower").value, "blocks": document.getElementById("n_val").value },
+                success: function (response) {
+                    document.getElementById("left").innerHTML = response
+                },
+                error: function (error) {
+                    console.error('POST request failed.');
+                    console.error('Error:', error);
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: '/',
+                data: { "q": s, "t": "right", "upper": document.getElementById("upper").value, "lower": document.getElementById("lower").value, "blocks": document.getElementById("n_val").value },
+                success: function (response) {
+                    document.getElementById("right").innerHTML = response
+                },
+                error: function (error) {
+                    console.error('POST request failed.');
+                    console.error('Error:', error);
+                }
+            });
         }
+
+        function update(s) {
+                    if (s == "1") {
+                        math = '\\int_{' + document.getElementById("lower").value + '}^{' + document.getElementById("upper").value + '} \\sin(x) \\, dx'
+                        document.getElementById("latex_code").src = 'https://math.vercel.app/?from=' + math
+                    } else if (s == "2") {
+                        math = '\\int_{' + document.getElementById("lower").value + '}^{' + document.getElementById("upper").value + '} \\cos(x) \\, dx'
+                        document.getElementById("latex_code").src = 'https://math.vercel.app/?from=' + math
+                    } else if (s == "3") {
+                        math = '\\int_{' + document.getElementById("lower").value + '}^{' + document.getElementById("upper").value + '} \(x^2) \\, dx'
+                        document.getElementById("latex_code").src = 'https://math.vercel.app/?from=' + math
+                    }
+                }
 
 
         $(document).ready(function () {
-            
+
             document.getElementById("n_val").oninput = function () {
                 document.getElementById("n_count").innerHTML = '"n" value: ' + this.value;
+                update($('#items').val())
+                work($('#items').val())
+            };
+            document.getElementById("upper").oninput = function () {
+                document.getElementById("uc").innerHTML = 'Upper bound value: ' + this.value;
+                update($('#items').val())
+                work($('#items').val())
+            };
+            document.getElementById("lower").oninput = function () {
+                document.getElementById("lc").innerHTML = 'Lower bound value: ' + this.value;
+                update($('#items').val())
                 work($('#items').val())
             };
             $('#items').change(function () {
                 var s = $(this).val();
+                update(s)
                 work(s)
             });
         });
@@ -80,10 +107,13 @@
         <option value="1">sin(x)</option>
         <option value="2">cos(x)</option>
         <option value="3">x^2</option>
-        <option value="4">x^(1/2) + tan(2x)</option>
     </select>
     <input type="range" id="n_val" min="1" max="10000" value="2">
     <p id="n_count">"n" value: 2</p>
+    <input type="range" id="upper" min="1" max="100" value="2">
+    <p id="uc">Upper bound value: 2</p>
+    <input type="range" id="lower" min="0" max="99" value="0">
+    <p id="lc">Lower bound value: 0</p>
     <table class="table">
         <tr>
             <td>Integral<br>
@@ -102,6 +132,7 @@
             </td>
         </tr>
     </table>
+    <img id="latex_code" src="https://math.vercel.app/?from=%20\int_{0}^{10}%20\sin(x)%20\,%20dx%20"></p>
 </body>
 
 </html>
