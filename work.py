@@ -22,7 +22,7 @@ def midpoint(function, upper, lower, n_times):
     answer = 0
     delta_x = ((float(upper) - float(lower)) / n_times)
     for x in range(n_times):
-        answer += delta_x * function((delta_x) * (0.5 + x))
+        answer += delta_x * function((delta_x) * (0.5 + x) + lower)
     return answer
 
 def right(function, upper, lower, n_times):
@@ -31,7 +31,7 @@ def right(function, upper, lower, n_times):
     for x in range(n_times + 1):
         if x != 0:
             #print(delta_x * x)
-            answer += delta_x * function(delta_x * x)
+            answer += delta_x * function(delta_x * x + lower)
     return answer
 
 def left(function, upper, lower, n_times):
@@ -40,7 +40,7 @@ def left(function, upper, lower, n_times):
     for x in range(n_times + 1):
         if x != (n_times + 1):
             #print(delta_x * x)
-            answer += delta_x * function(delta_x * x)
+            answer += delta_x * function(delta_x * x + lower)
     return answer
 
 """

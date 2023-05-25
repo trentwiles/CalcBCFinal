@@ -78,7 +78,7 @@
 
 
         $(document).ready(function () {
-
+            work($('#items').val())
             document.getElementById("n_val").oninput = function () {
                 document.getElementById("n_count").innerHTML = '"n" value: ' + this.value;
                 update($('#items').val())
@@ -114,6 +114,7 @@
     <p id="uc">Upper bound value: 2</p>
     <input type="range" id="lower" min="0" max="99" value="0">
     <p id="lc">Lower bound value: 0</p>
+    <img id="latex_code" src="https://math.vercel.app/?from=%20\int_{0}^{2}%20\sin(x)%20\,%20dx%20"></p>
     <table class="table">
         <tr>
             <td>Integral<br>
@@ -132,7 +133,6 @@
             </td>
         </tr>
     </table>
-    <img id="latex_code" src="https://math.vercel.app/?from=%20\int_{0}^{10}%20\sin(x)%20\,%20dx%20"></p>
 </body>
 
 </html>
