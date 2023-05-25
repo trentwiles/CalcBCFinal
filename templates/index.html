@@ -35,6 +35,30 @@
                         console.error('Error:', error);
                     }
                 });
+                $.ajax({
+                    type: 'POST',
+                    url: '/',
+                    data: { "q": s, "t": "left", "upper": 10, "lower": 0, "blocks": document.getElementById("n_val").value },
+                    success: function (response) {
+                        document.getElementById("left").innerHTML = response
+                    },
+                    error: function (error) {
+                        console.error('POST request failed.');
+                        console.error('Error:', error);
+                    }
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: '/',
+                    data: { "q": s, "t": "right", "upper": 10, "lower": 0, "blocks": document.getElementById("n_val").value },
+                    success: function (response) {
+                        document.getElementById("right").innerHTML = response
+                    },
+                    error: function (error) {
+                        console.error('POST request failed.');
+                        console.error('Error:', error);
+                    }
+                });
         }
 
 
