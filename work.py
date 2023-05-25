@@ -1,11 +1,12 @@
 import math
-from scipy.integrate import quad
+from scipy import integrate
 
 def functionOne(x):
     return math.sin(x)
 
-def integral1(upper, lower):
-    result, _ = quad(functionOne, upper, lower)
+def integral(function, lower, upper):
+    # I have to put it backwards for some reason
+    result, error = integrate.quad(function, upper, lower)
     return result
 
 def midpoint(function, upper, lower, n_times):
@@ -36,6 +37,4 @@ def left(function, upper, lower, n_times):
 print(midpoint(functionOne, 123, 0, 2848348))
 print(right(functionOne, 123, 0, 2848348))
 print(left(functionOne, 123, 0, 2848348))
-
-
-#print(trap(functionOne, 2 * math.pi, 0, 4))
+print(integral(functionOne, 123, 0))
