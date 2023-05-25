@@ -43,7 +43,9 @@ def left(function, upper, lower, n_times):
             answer += delta_x * function(delta_x * x)
     return answer
 
+"""
 print(midpoint(functionOne, 123, 0, 2848348))
 print(right(functionOne, 123, 0, 2848348))
 print(left(functionOne, 123, 0, 2848348))
 print(integral(functionOne, 123, 0))
+"""

@@ -7,7 +7,7 @@ app = Flask(__name__)
 def hello():
     return render_template("index.html")
 
-@app.route('/', method=["POST"])
+@app.route('/', methods=["POST"])
 def post():
     if not request.form.get("q") and not request.form.get("t") and not request.form.get("upper") and not request.form.get("lower"):
         return "error"
@@ -20,18 +20,18 @@ def post():
     else:
         f = work.functionFour
     
-    upper = request.form.get("upper")
-    lower = request.form.get("lower")
-    blocks = request.form.get("blocks")
+    upper = float(request.form.get("upper"))
+    lower = float(request.form.get("lower"))
+    blocks = int(request.form.get("blocks"))
 
     if request.form.get("t") == "midpoint":
-        return work.midpoint(f, upper, lower, blocks)
+        return str(work.midpoint(f, float(upper), lower, blocks))
     elif request.form.get("t") == "right":
-        return work.right(f, upper, lower, blocks)
+        return str(work.right(f, upper, lower, blocks))
     elif request.form.get("t") == "left":
-        return work.left(f, upper, lower, blocks)
+        return str(work.left(f, upper, lower, blocks))
     elif request.form.get("t") == "integral":
-        return work.integral(f, upper, lower)
+        return str(work.integral(f, upper, lower))
     else:
         return "error"
 
