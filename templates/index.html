@@ -10,7 +10,22 @@
 </head>
 
 <body>
+    <style>
+        #container {
+            width: 100%
+        }
+    </style>
     <script>
+        function hideShow() {
+            e = document.getElementById("container")
+            if (e.style.display === "none") {
+                e.style.display = "block";
+                document.getElementById("d").innerHTML = "(hide settings)"
+            } else {
+                e.style.display = "none";
+                document.getElementById("d").innerHTML = "(show settings)"
+            }
+        }
         function work(s) {
 
             $.ajax({
@@ -64,17 +79,17 @@
         }
 
         function update(s) {
-                    if (s == "1") {
-                        math = '\\int_{' + document.getElementById("lower").value + '}^{' + document.getElementById("upper").value + '} \\sin(x) \\, dx'
-                        document.getElementById("latex_code").src = 'https://math.vercel.app/?from=' + math
-                    } else if (s == "2") {
-                        math = '\\int_{' + document.getElementById("lower").value + '}^{' + document.getElementById("upper").value + '} \\cos(x) \\, dx'
-                        document.getElementById("latex_code").src = 'https://math.vercel.app/?from=' + math
-                    } else if (s == "3") {
-                        math = '\\int_{' + document.getElementById("lower").value + '}^{' + document.getElementById("upper").value + '} \(x^2) \\, dx'
-                        document.getElementById("latex_code").src = 'https://math.vercel.app/?from=' + math
-                    }
-                }
+            if (s == "1") {
+                math = '\\int_{' + document.getElementById("lower").value + '}^{' + document.getElementById("upper").value + '} \\sin(x) \\, dx'
+                document.getElementById("latex_code").src = 'https://math.vercel.app/?from=' + math
+            } else if (s == "2") {
+                math = '\\int_{' + document.getElementById("lower").value + '}^{' + document.getElementById("upper").value + '} \\cos(x) \\, dx'
+                document.getElementById("latex_code").src = 'https://math.vercel.app/?from=' + math
+            } else if (s == "3") {
+                math = '\\int_{' + document.getElementById("lower").value + '}^{' + document.getElementById("upper").value + '} \(x^2) \\, dx'
+                document.getElementById("latex_code").src = 'https://math.vercel.app/?from=' + math
+            }
+        }
 
 
         $(document).ready(function () {
@@ -108,12 +123,18 @@
         <option value="2">cos(x)</option>
         <option value="3">x^2</option>
     </select>
-    <input type="range" id="n_val" min="1" max="10000" value="2">
-    <p id="n_count">"n" value: 2</p>
-    <input type="range" id="upper" min="1" max="100" value="2">
-    <p id="uc">Upper bound value: 2</p>
-    <input type="range" id="lower" min="0" max="99" value="0">
-    <p id="lc">Lower bound value: 0</p>
+    <a onclick="hideShow()" href="#" id="d">(hide settings)</a>
+    <div id="container">
+        <p id="n_count">"n" value: 2</p>
+        <input type="range" id="n_val" min="1" max="10000" value="2">
+
+        <p id="uc">Upper bound value: 2</p>
+        <input type="range" id="upper" min="1" max="100" value="2">
+
+        <p id="lc">Lower bound value: 0</p>
+        <input type="range" id="lower" min="0" max="99" value="0"><br>
+
+    </div>
     <img id="latex_code" src="https://math.vercel.app/?from=%20\int_{0}^{2}%20\sin(x)%20\,%20dx%20"></p>
     <table class="table">
         <tr>
