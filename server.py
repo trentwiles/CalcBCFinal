@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 import work
 
 app = Flask(__name__)
@@ -6,6 +6,10 @@ app = Flask(__name__)
 @app.route('/')
 def hello():
     return render_template("index.html")
+
+@app.route('/static/<path:path>')
+def stat(path):
+    return send_from_directory('static', path)
 
 @app.route('/', methods=["POST"])
 def post():
