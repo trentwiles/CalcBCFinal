@@ -1,6 +1,6 @@
 # AP Calculus BC Final Project
 
-This is the final project for my AP Calculus BC class in 2023. Enjoy.
+Tool that compares Integrals to Riemann Sums and the Midpoint Rule. This is the final project for my AP Calculus BC class in 2023. Enjoy. 
 
 ## Important Notes
 
