@@ -12,7 +12,8 @@
 <body>
     <style>
         #container {
-            width: 100%
+            width: 100%;
+            display: none;
         }
     </style>
     <script>
@@ -123,7 +124,7 @@
         <option value="2">cos(x)</option>
         <option value="3">x^2</option>
     </select>
-    <a onclick="hideShow()" href="#" id="d">(hide settings)</a>
+    <a onclick="hideShow()" href="#" id="d">(show settings)</a>
     <div id="container">
         <p id="n_count">"n" value: 2</p>
         <input type="range" id="n_val" min="1" max="10000" value="2">
