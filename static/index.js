@@ -27,7 +27,7 @@ function work(s) {
         url: '/',
         data: { "q": s, "t": "midpoint", "upper": document.getElementById("upper").value, "lower": document.getElementById("lower").value, "blocks": document.getElementById("n_val").value },
         success: function (response) {
-            document.getElementById("midpoint").innerHTML = response
+            document.getElementById("midpoint").innerHTML = response + "<br><strong>" + Math.abs((parseFloat(document.getElementById("integral").innerHTML) - response) /  parseFloat(document.getElementById("integral").innerHTML ) * 100 ) + "% error</strong>"
         },
         error: function (error) {
             console.error('POST request failed.');
@@ -39,7 +39,7 @@ function work(s) {
         url: '/',
         data: { "q": s, "t": "left", "upper": document.getElementById("upper").value, "lower": document.getElementById("lower").value, "blocks": document.getElementById("n_val").value },
         success: function (response) {
-            document.getElementById("left").innerHTML = response
+            document.getElementById("left").innerHTML = response + "<br><strong>" + Math.abs((parseFloat(document.getElementById("integral").innerHTML) - response) /  parseFloat(document.getElementById("integral").innerHTML ) * 100 ) + "% error</strong>"
         },
         error: function (error) {
             console.error('POST request failed.');
@@ -51,7 +51,7 @@ function work(s) {
         url: '/',
         data: { "q": s, "t": "right", "upper": document.getElementById("upper").value, "lower": document.getElementById("lower").value, "blocks": document.getElementById("n_val").value },
         success: function (response) {
-            document.getElementById("right").innerHTML = response
+            document.getElementById("right").innerHTML = response + "<br><strong>" + Math.abs((parseFloat(document.getElementById("integral").innerHTML) - response) /  parseFloat(document.getElementById("integral").innerHTML ) * 100 ) + "% error</strong>"
         },
         error: function (error) {
             console.error('POST request failed.');
