@@ -1,5 +1,7 @@
 # AP Calculus BC Final Project
 
+*This project is no longer updated. It is hosted on [integral.trentwil.es](integral.trentwil.es) as a legacy project.*
+
 Tool that compares Integrals to Riemann Sums and the Midpoint Rule. This is the final project for my AP Calculus BC class in 2023. Enjoy. 
 
 ## Important Notes
